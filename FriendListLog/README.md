@@ -8,4 +8,4 @@
 
 🌍 Languages: English (default), French, Spanish, German, Portuguese, Italian → (to be defined in the plugin settings).
 
-<img width="1020" height="499" alt="FriendListLog" src="https://github.com/user-attachments/assets/e76d4a69-2e33-4f50-83c6-2224422b8849" />
+<img width="918" height="449" alt="FriendListLog" src="https://github.com/user-attachments/assets/e76d4a69-2e33-4f50-83c6-2224422b8849" />
