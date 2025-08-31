@@ -2,7 +2,7 @@
  * @name UsersLastConnection
  * @author Frixio
  * @version 0.0.1
- * @description Displays on profiles if users are online, or if not, the time since their last connection.
+ * @description Displays on profiles if users are online, or if not, the time since their last connection. Language selectable (default English).
  * @license MIT
  */
 
@@ -15,20 +15,16 @@ module.exports = (() => {
     fr:{online:"{username} est en ligne",last:"Dernière connexion il y a {duration}",unknown:"Dernière connexion inconnue",units:{d:"j",h:"h",m:"min"}},
     es:{online:"{username} está en línea",last:"Última conexión hace {duration}",unknown:"Última conexión desconocida",units:{d:"d",h:"h",m:"min"}},
     pt:{online:"{username} está online",last:"Último acesso há {duration}",unknown:"Último acesso desconhecido",units:{d:"d",h:"h",m:"min"}},
+    it:{online:"{username} è online",last:"Ultimo accesso {duration} fa",unknown:"Ultimo accesso sconosciuto",units:{d:"g",h:"h",m:"min"}},
     de:{online:"{username} ist online",last:"Zuletzt online vor {duration}",unknown:"Zuletzt online: unbekannt",units:{d:"T",h:"Std",m:"Min"}},
     ru:{online:"{username} в сети",last:"Был(а) в сети {duration} назад",unknown:"Последний визит: неизвестно",units:{d:"д",h:"ч",m:"мин"}},
     ar:{online:"{username} متصل",last:"آخر ظهور منذ {duration}",unknown:"آخر ظهور غير معروف",units:{d:"ي",h:"س",m:"د"}},
-    hi:{online:"{username} ऑनलाइन है",last:"आखिरी बार {duration} पहले",unknown:"आखिरी बार: अज्ञात",units:{d:"दि",h:"घं",m:"मि"}},
-    bn:{online:"{username} অনলাইনে আছেন",last:"সর্বশেষ দেখা {duration} আগে",unknown:"সর্বশেষ দেখা: অজানা",units:{d:"দ",h:"ঘ",m:"মি"}},
     ja:{online:"{username} はオンライン",last:"最終オンライン {duration} 前",unknown:"最終オンライン: 不明",units:{d:"日",h:"時間",m:"分"}},
-    "zh-CN":{online:"{username} 在线",last:"上次在线 {duration} 前",unknown:"上次在线：未知",units:{d:"天",h:"小时",m:"分钟"}},
-    it:{online:"{username} è online",last:"Ultimo accesso {duration} fa",unknown:"Ultimo accesso sconosciuto",units:{d:"g",h:"h",m:"min"}},
-    tr:{online:"{username} çevrimiçi",last:"Son görülme {duration} önce",unknown:"Son görülme: bilinmiyor",units:{d:"g",h:"s",m:"dk"}}
+    "zh-CN":{online:"{username} 在线",last:"上次在线 {duration} 前",unknown:"上次在线：未知",units:{d:"天",h:"小时",m:"分钟"}}
   };
+
   const LANG_LIST = [
-    ["en","English"],["fr","Français"],["es","Español"],["pt","Português"],["de","Deutsch"],
-    ["ru","Русский"],["ar","العربية"],["hi","हिन्दी"],["bn","বাংলা"],["ja","日本語"],
-    ["zh-CN","简体中文"],["it","Italiano"],["tr","Türkçe"]
+    ["en","English"],["fr","Français"],["es","Español"],["pt","Português"],["it","Italiano"],["de","Deutsch"],["ru","Русский"],["ar","العربية"],["ja","日本語"],["zh-CN","简体中文"]
   ];
 
   // ===== i18n: settings UI strings ==========================================
@@ -41,24 +37,18 @@ module.exports = (() => {
         toastLangUpdated:"Idioma actualizado", toastStarted:"Iniciado.", toastError:"Error"},
     pt:{languageTitle:"Idioma", languageSubtitle:"Escolha o idioma da frase de status de conexão.", previewTitle:"Pré-visualização",
         toastLangUpdated:"Idioma atualizado", toastStarted:"Iniciado.", toastError:"Erro"},
+    it:{languageTitle:"Lingua", languageSubtitle:"Scegli la lingua della frase di stato di connessione.", previewTitle:"Anteprima",
+        toastLangUpdated:"Lingua aggiornata", toastStarted:"Avviato.", toastError:"Errore"},
     de:{languageTitle:"Sprache", languageSubtitle:"Wähle die Sprache für den Verbindungsstatus-Satz.", previewTitle:"Vorschau",
         toastLangUpdated:"Sprache aktualisiert", toastStarted:"Gestartet.", toastError:"Fehler"},
     ru:{languageTitle:"Язык", languageSubtitle:"Выберите язык текста статуса подключения.", previewTitle:"Предпросмотр",
         toastLangUpdated:"Язык обновлён", toastStarted:"Запущено.", toastError:"Ошибка"},
     ar:{languageTitle:"اللغة", languageSubtitle:"اختر لغة جملة حالة الاتصال.", previewTitle:"معاينة",
         toastLangUpdated:"تم تحديث اللغة", toastStarted:"تم التشغيل.", toastError:"خطأ"},
-    hi:{languageTitle:"भाषा", languageSubtitle:"कनेक्शन स्थिति वाक्य की भाषा चुनें.", previewTitle:"पूर्वावलोकन",
-        toastLangUpdated:"भाषा अपडेट हुई", toastStarted:"शुरू हो गया.", toastError:"त्रुटि"},
-    bn:{languageTitle:"ভাষা", languageSubtitle:"সংযোগ স্থিতি বাক্যের ভাষা নির্বাচন করুন।", previewTitle:"প্রিভিউ",
-        toastLangUpdated:"ভাষা আপডেট হয়েছে", toastStarted:"শুরু হয়েছে।", toastError:"ত্রুটি"},
     ja:{languageTitle:"言語", languageSubtitle:"接続ステータス文の言語を選択してください。", previewTitle:"プレビュー",
         toastLangUpdated:"言語を更新しました", toastStarted:"開始しました。", toastError:"エラー"},
     "zh-CN":{languageTitle:"语言", languageSubtitle:"选择连接状态句子的语言。", previewTitle:"预览",
-        toastLangUpdated:"语言已更新", toastStarted:"已启动。", toastError:"错误"},
-    it:{languageTitle:"Lingua", languageSubtitle:"Scegli la lingua della frase di stato di connessione.", previewTitle:"Anteprima",
-        toastLangUpdated:"Lingua aggiornata", toastStarted:"Avviato.", toastError:"Errore"},
-    tr:{languageTitle:"Dil", languageSubtitle:"Bağlantı durumu cümlesi için dili seçin.", previewTitle:"Önizleme",
-        toastLangUpdated:"Dil güncellendi", toastStarted:"Başlatıldı.", toastError:"Hata"}
+        toastLangUpdated:"语言已更新", toastStarted:"已启动。", toastError:"错误"}
   };
 
   // ===== CSS (profil + settings) ============================================
@@ -247,7 +237,7 @@ module.exports = (() => {
     getName(){ return PLUGIN; }
     getAuthor(){ return "Frixio"; }
     getVersion(){ return "0.0.1"; }
-    getDescription(){ return "Instant status on popout/profile + last-seen counter. Language selectable (default English). Diagnostics (Ctrl+Alt+U)."; }
+    getDescription(){ return "Displays on profiles if users are online, or if not, the time since their last connection. Language selectable (default English)."; }
 
     // Settings panel (localized)
     getSettingsPanel(){
@@ -344,7 +334,7 @@ module.exports = (() => {
       return ids;
     }
 
-    // DOM injection — ***version qui marchait chez toi***
+    // DOM injection — version stable
     _startObservers(){
       const selectors=[
         'div[class*="userPopout"]','div[class*="userProfileModal"]','div[class*="userProfileInner"]',
