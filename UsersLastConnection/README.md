@@ -9,6 +9,8 @@
 🛠 Settings: Language dropdown with live preview; preferences saved locally.
 
 🌐 Languages: English (default), Français, Español, Português, Italiano, Deutsch, Русский, العربية, 日本語, 简体中文.
+<img width="316" height="256" alt="image" src="https://github.com/user-attachments/assets/9430172e-4e3a-4e2b-8311-b27a2c00a7b0" />
+
 
 
 🔒 Privacy/Notes: All data is stored locally. “Last seen” is based on the last observed offline transition (may be unknown if never observed).
